@@ -1,37 +1,52 @@
 import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
-  final Widget mobile;
-  final Widget tablet;
-  final Widget desktop;
   const Responsive(
       {super.key,
+      required this.desktop,
+      required this.largeMobile,
       required this.mobile,
       required this.tablet,
-      required this.desktop});
-  static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 800.0;
+      this.extraLargeScreen});
+  final Widget desktop;
+  final Widget? largeMobile;
+  final Widget mobile;
+  final Widget? tablet;
+  final Widget? extraLargeScreen;
 
-  static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 800.0 &&
-      MediaQuery.of(context).size.width < 1200.0;
+  static bool isMobile(BuildContext context) {
+    return MediaQuery.sizeOf(context).width <= 500;
+  }
 
-  static bool isDesktop(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 1200.0;
+  static bool isLargeMobile(BuildContext context) {
+    return MediaQuery.sizeOf(context).width <= 700;
+  }
+
+  static bool isTablet(BuildContext context) {
+    return MediaQuery.sizeOf(context).width < 1080;
+  }
+
+  static bool isDesktop(BuildContext context) {
+    return MediaQuery.sizeOf(context).width > 1024;
+  }
+
+  static bool isExtraLargeScreen(BuildContext context) {
+    return MediaQuery.sizeOf(context).width > 1400;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth >= 1200.0) {
-          return desktop;
-        } else if (constraints.maxWidth >= 800 &&
-            constraints.maxWidth < 1200.0) {
-          return tablet;
-        } else {
-          return mobile;
-        }
-      },
-    );
+    final Size size = MediaQuery.of(context).size;
+    if (size.width > 1400 && extraLargeScreen != null) {
+      return extraLargeScreen!;
+    } else if (size.width >= 1080) {
+      return desktop;
+    } else if (size.width >= 700 && tablet != null) {
+      return tablet!;
+    } else if (size.width >= 500 && largeMobile != null) {
+      return largeMobile!;
+    } else {
+      return mobile;
+    }
   }
 }

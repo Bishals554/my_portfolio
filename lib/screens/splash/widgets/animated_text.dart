@@ -13,15 +13,10 @@ class AnimatedLoadingText extends StatelessWidget {
         duration: const Duration(seconds: 2),
         builder: (context, value, child) => Column(
           children: [
-            // LinearProgressIndicator(
-            //   backgroundColor: Colors.black,
-            //   color: Colors.deepPurpleAccent,
-            //   value: value,
-            // ),
             LinearPercentIndicator(
               lineHeight: 10,
               alignment: MainAxisAlignment.center,
-              barRadius: Radius.circular(5),
+              barRadius: const Radius.circular(5),
               width: 100,
               percent: value * 1,
               progressColor: Colors.deepPurpleAccent,

@@ -20,14 +20,14 @@ class IntroBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (!Responsive.isDesktop(context))
-                SizedBox(
-                  height: size.height * 0.06,
-                ),
-              if (!Responsive.isDesktop(context))
-                SizedBox(
-                  height: size.height * 0.1,
-                ),
+              // if (!Responsive.isDesktop(context))
+              //   SizedBox(
+              //     height: size.height * 0.06,
+              //   ),
+              // if (!Responsive.isDesktop(context))
+              //   SizedBox(
+              //     height: size.height * 0.1,
+              //   ),
               const Responsive(
                   desktop: MyPortfolioText(start: 40, end: 50),
                   largeMobile: MyPortfolioText(start: 40, end: 35),

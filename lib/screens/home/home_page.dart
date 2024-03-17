@@ -13,12 +13,13 @@ class HomePage extends StatelessWidget {
       body: Row(
         children: [
           SizedBox(
-            width: MediaQuery.sizeOf(context).width * 0.01,
+            width: MediaQuery.sizeOf(context).width * 0.04,
           ),
           if (!Responsive.isLargeMobile(context))
             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Spacer(),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 TweenAnimationBuilder(
                   tween: Tween(begin: 0.0, end: 1.0),
                   duration: const Duration(milliseconds: 200),
@@ -57,17 +58,12 @@ class HomePage extends StatelessWidget {
                     );
                   },
                 ),
-                const Spacer(
-                  flex: 5,
-                )
+                if (!Responsive.isLargeMobile(context))
+                  const Expanded(child: SocialMediaIconList()),
               ],
             ),
           SizedBox(
-            width: MediaQuery.sizeOf(context).width * 0.02,
-          ),
-          if (!Responsive.isLargeMobile(context)) const SocialMediaIconList(),
-          SizedBox(
-            width: MediaQuery.sizeOf(context).width * 0.07,
+            width: MediaQuery.sizeOf(context).width * 0.04,
           ),
           const Expanded(
             child: IntroBody(),

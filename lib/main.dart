@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/screens/splash/splash_page.dart';
+import 'package:my_portfolio/utilities/constants';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Bishal',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: bgColor,
         useMaterial3: true,
       ),
       home: const SplashView(),
